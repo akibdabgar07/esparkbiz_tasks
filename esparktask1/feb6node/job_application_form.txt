@@ -1,0 +1,1 @@
+W3Schools teach you as intermediate level programmer. it skips many advanced concepts. It teaches relatively better the basic component of website HTML and CSS but apart from that server-side programming languages and frameworks looks like they are designed for beginner level programmer.
