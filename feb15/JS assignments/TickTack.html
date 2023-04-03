@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body{
+        background-color: aqua;
+    }
+    table {
+        width: 400px;
+        height: 400px;
+        margin: auto;
+    }
+
+    td {
+        background-color: #FF7F50;
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        color: white;
+        font-size: 30px;
+        font-weight: bolder;
+    }
+    .btn{
+        position: relative;
+        left: 48.5%;
+    }
+
+
+    
+</style>
+
+<body>
+
+    <h1 style="text-align: center;">Tic Tac Toe</h1>
+
+    <table >
+
+        <tr>
+            <td onclick="akib_toe(this.id);" id="td1"></td>
+            <td onclick="akib_toe(this.id)" id="td2"></td>
+            <td onclick="akib_toe(this.id)" id="td3"></td>
+        </tr>
+        <tr>
+            <td onclick="akib_toe(this.id)" id="td4"></td>
+            <td onclick="akib_toe(this.id)" id="td5" ></td>
+            <td onclick="akib_toe(this.id)" id="td6"></td>
+        </tr>
+        <tr>
+            <td onclick="akib_toe(this.id)" id="td7"></td>
+            <td onclick="akib_toe(this.id)" id="td8"></td>
+            <td onclick="akib_toe(this.id)" id="td9"></td>
+        </tr>
+    </table>
+    <script>
+        let akib_flag = 1;
+        let akib_X_wins= akib_Y_wins =0;
+        
+        function akib_toe(akib_td_id) {
+            document.getElementById(akib_td_id).setAttribute("onclick", "");
+            if (akib_flag == 1) {
+                document.getElementById(akib_td_id).innerHTML = 'X';
+                //console.log(document.getElementById(akib_td_id).innerHTML);
+                akib_flag = 0;
+                if (document.getElementById('td1').innerHTML == 'X' && document.getElementById('td2').innerHTML == 'X' && document.getElementById('td3').innerHTML == 'X') {
+                    akib_X_wins++;
+                    console.log(akib_X_wins);
+                    alert('X win'); akib_reset();
+                }
+                else if (document.getElementById('td4').innerHTML == 'X' && document.getElementById('td5').innerHTML == 'X' && document.getElementById('td6').innerHTML == 'X') {
+                    akib_X_wins++;
+                    alert('X win'); akib_reset();
+                }
+                else if (document.getElementById('td7').innerHTML == 'X' && document.getElementById('td8').innerHTML == 'X' && document.getElementById('td9').innerHTML == 'X') {
+                    akib_X_wins++;
+                    alert('X win'); akib_reset();
+                }
+                else if (document.getElementById('td1').innerHTML == 'X' && document.getElementById('td4').innerHTML == 'X' && document.getElementById('td7').innerHTML == 'X') {
+                    akib_X_wins++;
+                    alert('X win'); akib_reset();
+                }
+                else if (document.getElementById('td2').innerHTML == 'X' && document.getElementById('td5').innerHTML == 'X' && document.getElementById('td8').innerHTML == 'X') {
+                    akib_X_wins++;
+                    alert('X win'); akib_reset();
+                }
+                else if (document.getElementById('td3').innerHTML == 'X' && document.getElementById('td7').innerHTML == 'X' && document.getElementById('td9').innerHTML == 'X') {
+                    akib_X_wins++;
+                    alert('X win'); akib_reset();
+                }
+                else if (document.getElementById('td1').innerHTML == 'X' && document.getElementById('td5').innerHTML == 'X' && document.getElementById('td9').innerHTML == 'X') {
+                    akib_X_wins++;
+                    alert('X win'); akib_reset();
+                }
+                else if (document.getElementById('td3').innerHTML == 'X' && document.getElementById('td5').innerHTML == 'X' && document.getElementById('td7').innerHTML == 'X') {
+                    akib_X_wins++;
+                    alert('X win'); akib_reset();
+                }
+            }
+            else if (akib_flag == 0) {
+                document.getElementById(akib_td_id).innerHTML = 'O';
+                akib_flag = 1;
+                if (document.getElementById('td1').innerHTML == 'O' && document.getElementById('td2').innerHTML == 'O' && document.getElementById('td3').innerHTML == 'O') {
+                    akib_Y_wins++;
+                    alert('O win'); akib_reset();
+
+                }
+                else if (document.getElementById('td4').innerHTML == 'O' && document.getElementById('td5').innerHTML == 'O' && document.getElementById('td6').innerHTML == 'O') {
+                    akib_Y_wins++;
+                    alert('O win'); akib_reset();
+                }
+                else if (document.getElementById('td7').innerHTML == 'O' && document.getElementById('td8').innerHTML == 'O' && document.getElementById('td9').innerHTML == 'O') {
+                    akib_Y_wins++;
+                    alert('O win'); akib_reset();
+                }
+                else if (document.getElementById('td1').innerHTML == 'O' && document.getElementById('td4').innerHTML == 'O' && document.getElementById('td7').innerHTML == 'O') {
+                    akib_Y_wins++;
+                    alert('O win'); akib_reset();
+                }
+                else if (document.getElementById('td2').innerHTML == 'O' && document.getElementById('td5').innerHTML == 'O' && document.getElementById('td8').innerHTML == 'O') {
+                    akib_Y_wins++;
+                    alert('O win'); akib_reset();
+                }
+                else if (document.getElementById('td3').innerHTML == 'O' && document.getElementById('td7').innerHTML == 'O' && document.getElementById('td9').innerHTML == 'O') {
+                    akib_Y_wins++;
+                    alert('O win'); akib_reset();
+                }
+                else if (document.getElementById('td1').innerHTML == 'O' && document.getElementById('td5').innerHTML == 'O' && document.getElementById('td9').innerHTML == 'O') {
+                    akib_Y_wins++;
+                    alert('O win'); akib_reset();
+                }
+                else if (document.getElementById('td3').innerHTML == 'O' && document.getElementById('td5').innerHTML == 'O' && document.getElementById('td7').innerHTML == 'O') {
+                    akib_Y_wins++;
+                    alert('O win'); akib_reset();
+                }
+            }
+        }
+        console.log(akib_X_wins);
+        function akib_reset() {
+            
+            // console.log(document.getElementById('td1').value);
+            document.getElementById('td1').innerHTML = "";
+            document.getElementById('td2').innerHTML = "";
+            document.getElementById('td3').innerHTML = "";
+            document.getElementById('td4').innerHTML = "";
+            document.getElementById('td5').innerHTML = "";
+            document.getElementById('td6').innerHTML = "";
+            document.getElementById('td7').innerHTML = "";
+            document.getElementById('td8').innerHTML = "";
+            document.getElementById('td9').innerHTML = "";
+            
+            for (let akib_i = 1; akib_i < 10; akib_i++) {
+                document.getElementById('td'+akib_i).setAttribute("onclick", "akib_toe(this.id);");
+                
+            }
+            // document.write("<p>X win: "+akib_X_wins+"<br>O Win: "+akib_Y_wins+"</p>");
+            document.getElementById('win_counter').innerHTML='X win: '+akib_X_wins+'<br>O Win: '+akib_Y_wins;
+        }
+    </script>
+<p id="win_counter" style="text-align: center;">X win: 0 <br>O Win: 0 </p>
+<input type="button" class='btn' value="Reset" onclick="akib_reset()"/>
+</body>
+
+</html>

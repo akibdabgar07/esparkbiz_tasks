@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            margin: 10px;
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        body {
+            background-color: antiquewhite;
+        }
+        table {
+            background-color: thistle;
+        }
+        #page{
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <p>hello</p> -->
+    <center>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <td id="tbl_s_id">s_id</td>
+                    <td id="tbl_s_fname">s_fname</td>
+                    <td id="tbl_s_lname">s_lname</td>
+                    <td id="tbl_s_contact">s_contact</td>
+                    <td id="tbl_s_email">s_email</td>
+                    <td id="tbl_s_clg_name">clg_name</td>
+                    <td id="tbl_s_city">s_city</td>
+                </tr>
+            </thead>
+            <%var limit=100;%>
+                <%var offset=0;%>
+                    <%var i=0;%>
+                        <%var sum=1000/limit;%>
+
+
+
+
+                            <% for( i; i <limit ; i++) { %>
+                                <tbody>
+                                    <tr>
+                                        <td id="tbl_id">
+                                            <%= data[i].s_id %>
+                                        </td>
+                                        <td id="tbl_fname">
+                                            <%= data[i].s_fname %>
+                                        </td>
+                                        <td id="tbl_lname">
+                                            <%= data[i].s_lname %>
+                                        </td>
+                                        <td id="tbl_contact">
+                                            <%= data[i].s_contact %>
+                                        </td>
+                                        <td id="tbl_email">
+                                            <%= data[i].s_email %>
+                                        </td>
+                                        <td id="tbl_clg_name">
+                                            <%= data[i].clg_name %>
+                                        </td>
+                                        <td id="tbl_city">
+                                            <%= data[i].s_city %>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <%}%>
+        </table>
+        <table id="page">
+            <tr>
+                <td>
+                    <% for( j=1; j <=sum ; j++) { %>
+                        <a href="http://localhost:8083/?page=<%=j%>">
+                            <%=j%>
+                        </a>
+                        <%}%>
+                </td>
+            </tr>
+        </table>
+
+
+    </center>
+
+</body>
+
+</html>

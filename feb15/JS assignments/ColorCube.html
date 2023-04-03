@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+</head>
+
+<body>
+    <table>
+        <p id="tab1"></p>
+        <script>
+            let akib_col = 3;
+            let akib_raw = 3;
+            let akib_random;
+            let akib_r1;
+            let akib_count = 1;
+            let akib_col_color = new Array(11);
+            let akib_change_color = new Array(11);
+            function akib_table() {
+                document.write(
+                    "<table border=1px width='300px' height='300px' id=tb' style='background-color: powderblue;' align='center' >");
+
+                let akib_id_td = 0;
+                for (let akib_i = 0; akib_i < akib_col; akib_i++) {
+                    document.write("<tr>");
+                    for (let akib_j = 0; akib_j < akib_raw; akib_j++) {
+                        document.write("<td title='" + (akib_i + 1) + "*" + (akib_j + 1) + "'id='"+ akib_id_td + "' onclick='akib_add(this.id)'></td> ");
+                        akib_id_td++;
+                        
+                    }
+                }
+                document.write("</tr>");
+                akib_random = Math.floor(Math.random() * (akib_raw * akib_col));
+                console.log(akib_random);
+                document.getElementById(akib_random).style.backgroundColor="pink";
+                
+            }
+            document.write("</table>");
+            akib_table();
+            function akib_add(akib_id_passer) {
+                if(akib_random==akib_id_passer){
+                    console.log('hii');
+                akib_col = akib_col + 1;
+                akib_raw = akib_raw + 1;
+
+                document.body.innerHTML = "";
+                akib_table();
+                }
+                // akib_count++;
+            }
+        </script>
+
+
+
+
+</body>
+
+</html>

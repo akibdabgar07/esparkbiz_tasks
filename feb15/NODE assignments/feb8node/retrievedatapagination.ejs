@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script>
+        let i = <%= akib_i%>;
+        function next(){
+            document.getElementById('offset').setAttribute('value',i);
+            console.log(i);
+
+            if((window.location.href).includes('/?offset=')){
+                    let newdata=window.location.href.replaceAll("/?offset=" + i,"/?offset=" + (i += 10));
+                    window.location.replace(newdata);
+            }
+            else{
+                window.location.replace(window.location.href + "?offset=" +(i+=10));
+            }
+        } 
+
+    </script>
+    <div class="table-data">
+      
+        <table class="data" align="center" border="1">
+            <tr>
+                <th>Student Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact</th>
+                <th>email</th>
+                <th>city</th>
+                <th>college id</th>
+                <th>created date</th>
+
+            </tr>
+            <% for(var i=0; i < data.length; i++) { %>
+                <tr>
+                <td><%= data[i]["student_express_id"] %></td>
+                <td><%= data[i]["fname"] %></td>
+                <td><%= data[i]["lname"] %></td>
+                <td><%= data[i]["contact"] %></td>
+                <td><%= data[i]["email"] %></td>
+                <td><%= data[i]["city"] %></td>
+                <td><%= data[i]["college_id"] %></td>
+                <td><%= data[i]["created_date"] %></td>
+                </tr>
+                <% } %>
+        </table>
+
+        <form>
+            <input type="hidden" name="offset" id="offset" value=""/>
+            <input type="button" onclick="pre()" id="pre" value="previous" />
+            <input type="button" onclick="next()" id="next" value="Next"/>
+        </form>
+    </div> 
+</body>
+
+</html>
+
+<!--{"student_express_id":1,"fname":"Paige","lname":"Fuller","contact":"636264628","email":"PaigeFuller@gmail.com","city":"Frostdale","college_id":2,"created_date":"2023-02-08T01:05:17.000Z"},-->
