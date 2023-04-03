@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+</head>
+
+<body style="border: 1;">
+
+    <form action="/" method="get">
+        <input type="text" name="searching" placeholder="search ">
+        <input type="submit" value="search"/>
+
+    </form>
+
+    <div style="background-color:aliceblue;" class="table-data">
+        <table class="data" align="center" border="1">
+            <tr>
+                <th>fname</th>
+                <th>lname</th>
+                <th>contact</th>
+                <th>email</th>
+                <th>city</th>
+                <th>college id</th>
+
+
+            </tr>
+            <tr>
+                <td>^</td>
+                <td>*</td>
+                <td>$</td>
+                <td>!</td>
+                <td>+</td>
+                <td>#</td>
+            </tr>
+        </table>
+
+        <table class="data" align="center" border="1">
+            <tr>
+                <th>Student Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact</th>
+                <th>email</th>
+                <th>city</th>
+                <th>college id</th>
+                <th>created date</th>
+
+            </tr>
+            <% for(var i=0; i < data.length; i++) { %>
+                <tr>
+                    <td>
+                        <%= data[i]["student_express_id"] %>
+                    </td>
+                    <td>
+                        <%= data[i]["fname"] %>
+                    </td>
+                    <td>
+                        <%= data[i]["lname"] %>
+                    </td>
+                    <td>
+                        <%= data[i]["contact"] %>
+                    </td>
+                    <td>
+                        <%= data[i]["email"] %>
+                    </td>
+                    <td>
+                        <%= data[i]["city"] %>
+                    </td>
+                    <td>
+                        <%= data[i]["college_id"] %>
+                    </td>
+                    <td>
+                        <%= data[i]["created_date"] %>
+                    </td>
+                </tr>
+                <% } %>
+
+
+            </tr>
+        </table>
+        
+    </div>
+</body>
+
+</html>
