@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <style>
+        #overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer;
+ padding-top: 25%;
+ font-size: 5vh;
+  text-align: center;
+  color: deeppink;
+}
+.testclass {
+    background-image: url("../over.gif"), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    background-blend-mode: overlay;
+}
+
+
+        
+    </style>
+</head>
+
+<body style="background-color:honeydew;" onload="highlight()">
+    <div id="overlay">Loading</div>
+
+
+
+
+
+        <script>
+
+            function loadings(){
+
+                document.getElementById("overlay").style.display="block";
+            }
+
+            function over(){
+                document.getElementById("overlay").style.display="none";
+
+            }
+
+            async function getDetails(id, port, limit, akib_i, akib_sort, dsc_sort) {
+
+                loadings();
+                let url1 = `http://localhost:${port}/?offset=${akib_i}&limit=${limit}&sort=${akib_sort}&old_sort=${dsc_sort}`;
+                let url = await fetch(url1);
+                let data = await url.json();
+
+                let html = document.getElementById("main");
+                html.innerHTML = "";
+                for (let akib_j = 0; akib_j < data["limit"]; akib_j++) {
+                    html.innerHTML += `<tr> <td id="sid"> ${data["data"][akib_j]["student_express_id"]} </td> <td id="fname"> ${data["data"][akib_j]["fname"]} </td> <td id="lname"> ${data["data"][akib_j]["lname"]}</td> <td id="contact"> ${data["data"][akib_j]["contact"]} </td> <td id="email"> ${data["data"][akib_j]["email"]} </td> <td id="city"> ${data["data"][akib_j]["city"]}</td> <td id="college"> ${data["data"][akib_j]["college_id"]} </td> <td id="date">${data["data"][akib_j]["created_date"]} </td> </tr>`;
+                }
+                over();
+            }
+
+            function highlight() {
+                let offset_value =<%=akib_i%>;
+                let pageLength = (offset_value / parseInt(<%=limit %>)) + 1;
+                document.getElementById('page' + pageLength).style.backgroundColor = "red";
+            }
+
+            let i = <%= akib_i%>;
+
+            function next() {
+                document.getElementById('offset').setAttribute('value', i);
+                if (i < 1400) {
+
+                    if ((window.location.href).includes('/?offset=' + i + '&limit=')) {
+                        let newdata = window.location.href.replaceAll("/?offset=" + i + "&limit=" +<%=limit %>, "/?offset=" + (i += <%=limit %>) + "&limit=" +<%=limit%>);
+                        window.location.replace(newdata);
+                    }
+                    else {
+                        window.location.replace(window.location.href + "?offset=" + (i +=<%=limit %>) + "&limit=" +<%=limit %>);
+                    }
+                }
+                else {
+                    window.location.replace(window.location.href);
+                }
+
+            }
+
+            function pre() {
+                document.getElementById('offset').setAttribute('value', i);
+                console.log(i);
+
+                if (i >= 10) {
+                    if ((window.location.href).includes('/?offset=')) {
+                        let newdata = window.location.href.replaceAll("/?offset=" + i, "/?offset=" + (i -= <%=limit %>));
+                        // window.location.replace(window.location.href+""+i);
+                        window.location.replace(newdata);
+                    }
+                    else {
+                        window.location.replace(window.location.href + "?offset=" + (i -= <%=limit %>));
+                    }
+                }
+                else {
+                    window.location.replace(window.location.href);
+                }
+            }
+
+        </script>
+        <div class="table-data">
+            <% let old_sort=akib_sort%>
+                <table style="background-color:blanchedalmond" class="data" align="center" border="1">
+                    <tr style="background-color:indianred;">
+                        <th><a
+                                href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=student_express_id&old_sort=<%=old_sort%>">Student
+                                Id</a> </th>
+                        <th> <a
+                                href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=fname&old_sort=<%=old_sort%>">First
+                                Name</a> </th>
+                        <th><a
+                                href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=lname&old_sort=<%=old_sort%>">Last
+                                Name</a></th>
+                        <th><a
+                                href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=contact&old_sort=<%=old_sort%>">Contact</a>
+                        </th>
+                        <th><a
+                                href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=email&old_sort=<%=old_sort%>">email</a>
+                        </th>
+                        <th><a
+                                href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=city&old_sort=<%=old_sort%>">city</a>
+                        </th>
+                        <th><a
+                                href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=college_id&old_sort=<%=old_sort%>">college
+                                id</a></th>
+                        <th><a
+                                href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=created_date&old_sort=<%=old_sort%>">created
+                                date</a></th>
+
+                    </tr>
+                    <tbody id="main">
+                        <% for(var i=0; i < data.length; i++) { %>
+                            <tr style="">
+                                <td id="sid">
+                                    <%= data[i]["student_express_id"] %>
+                                </td>
+                                <td id="fname">
+                                    <%= data[i]["fname"] %>
+                                </td>
+                                <td id="lname">
+                                    <%= data[i]["lname"] %>
+                                </td>
+                                <td id="contact">
+                                    <%= data[i]["contact"] %>
+                                </td>
+                                <td id="email">
+                                    <%= data[i]["email"] %>
+                                </td>
+                                <td id="city">
+                                    <%= data[i]["city"] %>
+                                </td>
+                                <td id="college">
+                                    <%= data[i]["college_id"] %>
+                                </td>
+                                <td id="date">
+                                    <%= data[i]["created_date"] %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+
+
+
+                <div style="text-align: center;">
+                    <input type="hidden" name="offset" id="offset" value="" />
+                    <input type="submit" onclick="pre()" id="pre" value="previous" />
+
+                    <% i=0; for(let j=1;j<=results1[0]['COUNT(student_express_id)']/limit;j++){%>
+                        <span style="cursor: pointer;" id="page<%=j%>"
+                            onclick="getDetails(this.id,'<%=port%>','<%=limit%>','<%=i%>','<%=akib_sort%>','<%=dsc_sort%>');">
+                            <%=j%>
+                        </span>
+                        <% i=i+parseInt(limit)%>
+                            <% }%>
+
+                                <input type="submit" onclick="next()" id="next1" value="Next" />
+                </div>
+
+        </div>
+
+    
+</body>
+
+</html>
