@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+</head>
+
+<body onload="highlight()">
+    <form action="http://localhost:<%=port %>/">
+        <input type="hidden" name="offset" value="<%=akib_i%>" />
+        <label>Enter value for show data</label>
+        <input type="number" name="limit" id="limit_change"
+            max="<%=parseInt(results1[0])['COUNT(student_express_id)']%>" min="1" required />
+        <input type="submit" value="submit" />
+
+    </form>
+
+
+    <script>
+        async function getDetails(id, port, limit, akib_i, akib_sort, dsc_sort) {
+            let url1 = `http://localhost:${port}/?offset=${akib_i}&limit=${limit}&sort=${akib_sort}&old_sort=${dsc_sort}`;
+            let url = await fetch(url1);
+            let data = await url.json();
+
+            let html = document.getElementById("main");
+            html.innerHTML="";
+            for (let akib_j = 0; akib_j < data["limit"]; akib_j++) {
+                html.innerHTML += `<tr> <td id="sid"> ${ data["data"][akib_j]["student_express_id"] } </td> <td id="fname"> ${ data["data"][akib_j]["fname"]} </td> <td id="lname"> ${ data["data"][akib_j]["lname"] }</td> <td id="contact"> ${ data["data"][akib_j]["contact"] } </td> <td id="email"> ${ data["data"][akib_j]["email"] } </td> <td id="city"> ${ data["data"][akib_j]["city"] }</td> <td id="college"> ${ data["data"][akib_j]["college_id"] } </td> <td id="date">${ data["data"][akib_j]["created_date"] } </td> </tr>`;
+            }
+        }
+
+        function highlight() {
+            let offset_value =<%=akib_i%>;
+            let pageLength = (offset_value / parseInt(<%=limit %>)) + 1;
+            document.getElementById('page' + pageLength).style.backgroundColor = "red";
+        }
+
+        let i = <%= akib_i%>;
+
+        function next() {
+            document.getElementById('offset').setAttribute('value', i);
+            if (i < 1400) {
+
+                if ((window.location.href).includes('/?offset=' + i + '&limit=')) {
+                    let newdata = window.location.href.replaceAll("/?offset=" + i + "&limit=" +<%=limit %>, "/?offset=" + (i += <%=limit %>) + "&limit=" +<%=limit%>);
+                    window.location.replace(newdata);
+                }
+                else {
+                    window.location.replace(window.location.href + "?offset=" + (i +=<%=limit %>) + "&limit=" +<%=limit %>);
+                }
+            }
+            else {
+                window.location.replace(window.location.href);
+            }
+
+        }
+
+        function pre() {
+            document.getElementById('offset').setAttribute('value', i);
+            console.log(i);
+
+            if (i >= 10) {
+                if ((window.location.href).includes('/?offset=')) {
+                    let newdata = window.location.href.replaceAll("/?offset=" + i, "/?offset=" + (i -= <%=limit %>));
+                    // window.location.replace(window.location.href+""+i);
+                    window.location.replace(newdata);
+                }
+                else {
+                    window.location.replace(window.location.href + "?offset=" + (i -= <%=limit %>));
+                }
+            }
+            else {
+                window.location.replace(window.location.href);
+            }
+        }
+
+    </script>
+    <div class="table-data">
+        <% let old_sort=akib_sort%>
+            <table class="data" align="center" border="1">
+                <tr>
+                    <th><a
+                            href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=student_express_id&old_sort=<%=old_sort%>">Student
+                            Id</a> </th>
+                    <th> <a
+                            href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=fname&old_sort=<%=old_sort%>">First
+                            Name</a> </th>
+                    <th><a
+                            href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=lname&old_sort=<%=old_sort%>">Last
+                            Name</a></th>
+                    <th><a
+                            href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=contact&old_sort=<%=old_sort%>">Contact</a>
+                    </th>
+                    <th><a
+                            href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=email&old_sort=<%=old_sort%>">email</a>
+                    </th>
+                    <th><a
+                            href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=city&old_sort=<%=old_sort%>">city</a>
+                    </th>
+                    <th><a
+                            href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=college_id&old_sort=<%=old_sort%>">college
+                            id</a></th>
+                    <th><a
+                            href="http://localhost:<%=port%>/?offset=0&limit=<%=limit%>&sort=created_date&old_sort=<%=old_sort%>">created
+                            date</a></th>
+
+                </tr>
+                <tbody id="main">
+                    <% for(var i=0; i < data.length; i++) { %>
+                        <tr>
+                            <td id="sid">
+                                <%= data[i]["student_express_id"] %>
+                            </td>
+                            <td id="fname">
+                                <%= data[i]["fname"] %>
+                            </td>
+                            <td id="lname">
+                                <%= data[i]["lname"] %>
+                            </td>
+                            <td id="contact">
+                                <%= data[i]["contact"] %>
+                            </td>
+                            <td id="email">
+                                <%= data[i]["email"] %>
+                            </td>
+                            <td id="city">
+                                <%= data[i]["city"] %>
+                            </td>
+                            <td id="college">
+                                <%= data[i]["college_id"] %>
+                            </td>
+                            <td id="date">
+                                <%= data[i]["created_date"] %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+
+
+
+            <div style="text-align: center;">
+                <input type="hidden" name="offset" id="offset" value="" />
+                <input type="submit" onclick="pre()" id="pre" value="previous" />
+
+                <% i=0; for(let j=1;j<=results1[0]['COUNT(student_express_id)']/limit;j++){%>
+                    <p style="cursor: pointer;" id="page<%=j%>" onclick="getDetails(this.id,'<%=port%>','<%=limit%>','<%=i%>','<%=akib_sort%>','<%=dsc_sort%>')">
+                        <%=j%>
+                    </p>
+                    <% i=i+parseInt(limit)%>
+                        <% }%>
+
+                            <input type="submit" onclick="next()" id="next1" value="Next" />
+            </div>
+
+    </div>
+
+</body>
+
+</html>
