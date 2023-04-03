@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:hover:nth-child(even) {
+            background-color: coral;
+        }
+
+        tr:hover:nth-child(odd) {
+            background-color: rgb(255, 243, 80);
+        }
+
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body style="border: 1;">
+    <script>
+
+
+
+
+
+    </script>
+    <!-- <form action="/job" method="get">
+       
+
+
+
+    </form> -->
+
+    <div style="background-color:aliceblue;" class="table-data">
+
+
+        <table class="data" align="center" border="1">
+            <td style="text-align: center; background-color:#191970		;
+            color: white;" colspan="7">
+                <h2>Employee Details</h2>
+            </td>
+
+            <tr style="background-color: #04AA6D;
+            color: white;">
+                <!-- <td>checked</td> -->
+
+                <th>emp_id</th>
+                <th>emp_name</th>
+                <th>email</th>
+                <th>city</th>
+                <th>department</th>
+                <th colspan="2">contact </th>
+
+
+
+
+            </tr>
+            <% let new_length=0; for(var akib_i=0; akib_i < result.length; akib_i++) { %>
+                <tr>
+                    <input type="hidden" id="sid<%=akib_i%>" value="<%=result[akib_i].employee_tb_id%>">
+                    <td>
+                        <input type="text" value="<%=result[akib_i].emp_id%>" id="emp_id<%=akib_i%>"
+                            name="emp_id<%=akib_i%>">
+                    </td>
+
+                    <td>
+                        <input type="text" value="<%=result[akib_i].emp_name%>" id="emp_name<%=akib_i%>"
+                            name="emp_name<%=akib_i%>">
+                    </td>
+                    <td>
+                        <input type="text" value="<%=result[akib_i].email%>" id="email<%=akib_i%>"
+                            name="email<%=akib_i%>">
+                    </td>
+                    <td>
+                        <input type="text" value="<%=result[akib_i].city%>" id="city<%=akib_i%>" name="city<%=akib_i%>">
+                    </td>
+                    <td>
+                        <input type="text" value="<%=result[akib_i].department%>" id="department<%=akib_i%>"
+                            name="department<%=akib_i%>">
+                    </td>
+                    <td>
+                        <input type="text" value="<%=result[akib_i].contact%>" id="contact<%=akib_i%>"
+                            name="emp_id<%=akib_i%>">
+                    </td>
+
+                    <td style="background-color: deepskyblue;">
+
+                        <p style="background-color: deepskyblue;" name="update"
+                            onclick="updatedata(<%=result[akib_i].employee_tb_id%>,<%=akib_i%>)">update</p>
+                    </td>
+
+                </tr>
+                <% new_length=akib_i;} new_length +=1 %>
+                    <tr>
+
+                        <td>
+                            <input type="text" id="emp_id<%=new_length%>" name="emp_id">
+                        </td>
+
+                        <td>
+                            <input type="text" id="emp_name<%=new_length%>" name="emp_name">
+                        </td>
+                        <td>
+                            <input type="text" id="email<%=new_length%>" name="email">
+                        </td>
+                        <td>
+                            <input type="text" id="city<%=new_length%>" name="city">
+                        </td>
+                        <td>
+                            <input type="text" id="department<%=new_length%>" name="department">
+                        </td>
+                        <td>
+                            <input type="text" id="contact<%=new_length%>" name="contact">
+                        </td>
+
+                        <td style="background-color: deepskyblue;">
+
+                            <p name="save" onclick="savedata(<%=new_length%>)">SAVE</p>
+
+                        </td>
+
+
+                    </tr>
+                    <tbody id="addraw"></tbody>
+
+                    <tr>
+                        <td style="text-align: center; " colspan="7"><input type="submit" value="addd"
+                                onclick="add(<%=akib_i%>)" /></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;" colspan="7"><input type="submit" value="all"
+                                onclick="allsave(<%=result.length%>,<%=akib_i%>,<%=new_length%>)" /></td>
+                    </tr>
+
+
+        </table>
+
+    </div>
+
+    <script>
+        let j =<%=new_length+1 %>;
+        function add(id) {
+            document.getElementById('addraw').innerHTML += `<tr><td> <input type="text" id="emp_id${j}" name="emp_id${j}"> </td> <td> <input type="text" id="emp_name${j}" name="emp_name${j}"> </td> <td> <input type="text" id="email${j}" name="email${j}"> </td> <td> <input type="text" id="city${j}" name="city${j}"> </td> <td> <input type="text" id="department${j}" name="department${j}"> </td> <td > <input type="text" id="contact${j}" name="contact${j}"> </td> <td style="background-color: deepskyblue;"> <p  name="save" onclick="savedata(${j})">SAVE</p> </td><tr>`;
+            j++;
+        }
+
+        async function savedata(id1) {
+
+            let id = document.getElementById("emp_id" + id1).value;
+            let name = document.getElementById("emp_name" + id1).value;
+            let email = document.getElementById("email" + id1).value;
+            let city = document.getElementById("city" + id1).value;
+            let dept = document.getElementById("department" + id1).value;
+            let cont = document.getElementById("contact" + id1).value;
+
+
+
+            const url = await fetch('http://localhost:8086/insert?id=' + id + '&name=' + name + '&email=' + email + '&city=' + city + '&dept=' + dept + '&cont=' + cont);
+
+
+            alert('added successfully :)');
+            location.reload();
+
+        }
+
+        async function updatedata(eid, id1) {
+
+
+            let id = document.getElementById("emp_id" + id1).value;
+            let name = document.getElementById("emp_name" + id1).value;
+            let email = document.getElementById("email" + id1).value;
+            let city = document.getElementById("city" + id1).value;
+            let dept = document.getElementById("department" + id1).value;
+            let cont = document.getElementById("contact" + id1).value;
+
+
+
+            const url = await fetch('http://localhost:8086/update?eid=' + eid + '&id=' + id + '&name=' + name + '&email=' + email + '&city=' + city + '&dept=' + dept + '&cont=' + cont);
+
+            alert('UPDATE :)');
+
+            location.reload();
+
+        }
+        async function allsave() {
+            let idlen = <%=result.length%>;
+
+            for (let akib_i = 0; akib_i < idlen; akib_i++) {
+                let id = document.getElementById("emp_id" + akib_i).value;
+                let name = document.getElementById("emp_name" + akib_i).value;
+                let email = document.getElementById("email" + akib_i).value;
+                let city = document.getElementById("city" + akib_i).value;
+                let dept = document.getElementById("department" + akib_i).value;
+                let cont = document.getElementById("contact" + akib_i).value;
+                let sid = document.getElementById('sid' + akib_i).value;
+                console.log(id, name, email, city, dept, cont);
+
+
+                const url1 = await fetch('http://localhost:8086/update?eid=' + sid + '&id=' + id + '&name=' + name + '&email=' + email + '&city=' + city + '&dept=' + dept + '&cont=' + cont);
+            }
+            console.log('insert');
+            for (let akib_i = idlen; akib_i < j; akib_i++) {
+                let id = document.getElementById("emp_id" + akib_i).value;
+                let name = document.getElementById("emp_name" + akib_i).value;
+                let email = document.getElementById("email" + akib_i).value;
+                let city = document.getElementById("city" + akib_i).value;
+                let dept = document.getElementById("department" + akib_i).value;
+                let cont = document.getElementById("contact" + akib_i).value;
+
+                if (name == '' || name == undefined || id == '' || id == undefined) {
+                   
+                }else{
+                    const url = await fetch('http://localhost:8086/insert?id=' + id + '&name=' + name + '&email=' + email + '&city=' + city + '&dept=' + dept + '&cont=' + cont);
+                    console.log(id, name, email, city, dept, cont);
+                }
+
+            }
+
+            alert('save all:)');
+
+            location.reload();
+
+        }
+    </script>
+</body>
+
+</html>

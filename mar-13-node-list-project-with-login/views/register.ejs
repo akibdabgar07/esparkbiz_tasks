@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="jscript.js"></script>
+
+</head>
+
+<body>
+   
+    <div class="container">
+        <div class="maindiv">
+        
+            <div class="logo">
+                <img src="/logo.svg">
+            </div>
+        
+            <h3>Welcome Back!</h3>
+            <div class="reg-form">
+                <form method="post" action="/submit">
+                    <div class="row">
+                        <label for="uname">Name</label>
+                        <input type="text" name="user_name" id="user_name" onkeyup="chknm(this.value)">
+                        <span class="warn2" id="chknm1"></span>
+                    </div>
+                    <div class="row">
+                        <label for="email">Email</label>
+                        <input type="email" name="user_email" id="user_email" onkeyup="chkmail(this.value)">
+                        <span class="warn2" id="chkmail1"></span>  <span class="warn2" id="chkmail2"></span>
+                    </div>
+                    <div class="row">
+                        <label for="pass">Password</label>
+                        <input type="password" name="user_password" id="user_password" onkeyup="pass(this.value)" >
+                        <span class="warn2" id="passchk1"></span>
+
+                    </div>
+                    <div class="row">
+                        <label for="cpass">Confirm Password</label>
+                        <input type="password" name="confirm_pass" onkeyup="matchPassword()" id="confirm_cpass" >
+                        <span class="warn2" id="passchk"></span>
+                    </div>
+                    <div class="row">
+                        <input type="submit" class="submit" onclick="" value="Sign up" id="submit" >
+                    </div>
+                    <div>
+                        <div class="signup">
+                            <h5>Already have an account ?</h5>
+                            <a href="/login">Login Here</a></div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+        <div class="dn-logo">
+            <img src="/bottom-logo.png">
+        </div>
+    </div>
+</body>
+</html>
+
