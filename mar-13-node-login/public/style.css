@@ -1,0 +1,132 @@
+body {
+  background-image: url("auth-bg.png");
+  margin: 0;
+  background-repeat: no-repeat;
+
+}
+.container {
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+}
+
+.maindiv {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 170px; 
+  padding-top: 100px;
+}
+
+.logo img {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.maindiv {
+  margin-left: 160px;
+  padding-left: 50px;
+  width: 30%;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding-right: 30px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  padding-top: 30px;
+  color: white;
+}
+
+input {
+  height: 35px;
+}
+
+.row a {
+  text-decoration: none;
+  padding: 2px 5px;
+}
+
+.signup {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.signup h5 {
+  color: white;
+  margin-top: 40px;
+  padding-bottom: 10px;
+}
+
+.signup a {
+  font-size: 15px;
+  margin-top: 40px;
+  padding-left: 8px;
+  text-decoration: none;
+  color: #A4843F;
+}
+
+.login {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.login h5 {
+  color: white;
+  margin-top: 40px;
+  padding-bottom: 60px;
+}
+
+.login a {
+  font-size: 15px;
+  margin-top: 40px;
+  padding-left: 8px;
+  text-decoration: none;
+  color: #A4843F;
+}
+
+.dn-logo {
+  text-align: right;
+  padding-right: 120px;
+  margin-top: -91px;
+}
+.main-form {
+  color: white;
+}
+form {
+  height: 100%;
+}
+label {
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+.submit {
+  margin-top: 30px;
+  background-color: #174f2a;
+  border: none;
+  color: white;
+  font-weight: 700;
+}
+.submit:active {
+  border: none;
+  background-color: #174f2ab6;
+}
+.submit:disabled{
+  background-color: #174f2a2d;
+}
+.logo-login{
+  padding-top: 100px;
+  padding-bottom: 20px;
+}
+.warn{
+  color: red;
+  padding-top: 20px;
+  font-weight: 500;
+}
+.warn2{
+  padding-top: 5px;
+  color: red;
+}
