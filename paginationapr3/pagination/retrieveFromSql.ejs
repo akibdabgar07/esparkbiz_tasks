@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table</title>
+</head>
+
+<body>
+    <script>
+        let i = <%= yax_i%>;
+        function next() {
+            document.getElementById('offset').setAttribute('value', i);
+            console.log(i);
+
+            if ((window.location.href).includes('/?offset=')) {
+                let newlocation = window.location.href.replaceAll("/?offset=" + i, "/?offset=" + (i += 10));
+                // window.location.replace(window.location.href+""+i);
+                window.location.replace(newlocation);
+            }
+            else {
+                window.location.replace(window.location.href + "?offset=" + (i += 10));
+            }
+
+        }
+        function pre() {
+            document.getElementById('offset').setAttribute('value', i);
+            console.log(i);
+
+            if (i >= 10) {
+                if ((window.location.href).includes('/?offset=')) {
+                    let newlocation = window.location.href.replaceAll("/?offset=" + i, "/?offset=" + (i -= 10));
+                    // window.location.replace(window.location.href+""+i);
+                    window.location.replace(newlocation);
+                }
+                else {
+                    window.location.replace(window.location.href + "?offset=" + (i -= 10));
+                }
+            }
+            else
+            {
+                window.location.replace(window.location.href);
+            }
+        }
+    </script>
+    <table border="1" class="data"
+        style="border: 1px solid #ddd; padding: 8px; border-collapse: collapse; margin: auto; width: 80%;">
+        <tr>
+            <td style="width:20px">Student id</td>
+            <td>first name</td>
+            <td>last name</td>
+            <td>email</td>
+            <td>college id</td>
+            <td>city</td>
+            <td>contact No</td>
+            <td>created_date</td>
+        </tr>
+        <% for(var i=0; i < data.length; i++) { %>
+            <tr>
+                <td>
+                    <%= data[i]["idstudentMaster_express"] %>
+                </td>
+                <td>
+                    <%= data[i]["fname"] %>
+                </td>
+                <td>
+                    <%= data[i]["lname"] %>
+                </td>
+                <td>
+                    <%= data[i]["email"] %>
+                </td>
+                <td>
+                    <%= data[i]["collegeId"] %>
+                </td>
+                <td>
+                    <%= data[i]["sCity"] %>
+                </td>
+                <td>
+                    <%= data[i]["contactNo"] %>
+                </td>
+                <td style="width: 150px;">
+                    <%= data[i]["created_date"] %>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+    <input type="hidden" name="offset" id="offset" value="" />
+    <input type="button" onclick="pre()" value="previous" id="pre" />
+    <input type="button" onclick="next()" value="Next" />
+
+</body>
+
+</html>
