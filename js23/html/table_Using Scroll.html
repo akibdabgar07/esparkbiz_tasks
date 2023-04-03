@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Tables_using JavaScript</title>
+  </head>
+  <body>
+    <p id="tableViewer"></p>
+    <script>
+      let cols = 3;
+      let rows = 3;
+      function genTable() {
+        document.write(
+          "<table border = '1px' width = '100%' height= '40%' onwheel='add()' ondblclick='remove()' id = 'test'>"
+        );
+        for (let i = 0; i < cols; i++) {
+          document.write("<tr>");
+          for (let j = 0; j < rows; j++) {
+            document.write("<td title= " + (i + 1) + "*" + (j + 1) + "></td>");
+          }
+          document.write("</tr>");
+        }
+      }
+      document.write("</table>");
+      genTable();
+      function add() {
+        cols = cols + 1;
+        rows = rows + 1;
+        console.log(cols);
+        document.body.innerHTML = "";
+        //document.getElementById('tableViewer').innerHTML=genTable();
+        genTable();
+      }
+      function remove() {
+        if (cols > 1 && rows > 1) {
+          cols = cols - 1;
+          rows = rows - 1;
+          //console.log(cols);
+          document.body.innerHTML = '<p id="warning" style="background-color: red"></p>';
+          //document.getElementById('tableViewer').innerHTML=genTable();
+          genTable();
+        } else {
+          document.getElementById("warning").innerHTML =
+            "Table is already deleted";
+        }
+      }
+    </script>
+    
+  </body>
+</html>

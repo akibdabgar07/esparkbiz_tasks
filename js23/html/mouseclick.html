@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Mouse Click</title>
+    </head>
+    <body onclick="left()" oncontextmenu="right()" ondblclick="doubleclick()">
+        <p id="demo"></p>
+        <script>
+            function left(){
+              document.getElementById("demo").innerHTML ="Left Click";
+            }
+            function right(){
+              document.getElementById("demo").innerHTML ="right Click";
+            }
+            function doubleclick(){
+              document.getElementById("demo").innerHTML ="Double Click";
+            }
+        </script>
+    </body>
+</html>

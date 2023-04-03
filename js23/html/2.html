@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2nd task</title>
+</head>
+<body onload="load()">
+    <table border="1" width="100%">
+        <tr height= '40%'>
+            <td onclick="clicked()" onmouseover="mouseover()" onmouseout="mouseout()" oncontextmenu="right()" ondblclick="doubleclick()" onkeydown="keydown()" onkeyup="keyup()" onscroll="scroll()" oninput="input()" onmousewheel="mousewheel()" onpaste="paste()"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum incidunt atque debitis hic, qui iure porro? Laborum sequi, explicabo, perferendis nostrum saepe, consequuntur mollitia aliquid praesentium fuga deleniti officiis veniam.<input type="text" id="myInput" onblur="blur()"/></td>
+        </tr>
+        <tr>
+            <td>
+                <details ontoggle="toggle()">
+                    <summary>for ontoggle event</summary>
+                    <p> The ontoggle event occurs when the user opens or closes the &lt;details&gt; element.</p>
+                    </details>
+            </td>
+        </tr>
+    </table>
+    <div id="result" style="margin-top: 2%;"></div>
+    <div id="load" style="margin-top: 2%;"></div>
+    <div id="inputResult" style="margin-top: 2%;"></div>
+
+    <script>
+        function load(){
+            document.getElementById("load").innerHTML="onload triggered";
+        }
+        function clicked(){
+            document.getElementById("result").innerHTML="onclick triggered";
+        }
+        function mouseover(){
+            document.getElementById("result").innerHTML="onmouseover triggered";
+        }
+        function mouseout(){
+            document.getElementById("result").innerHTML="onmouseout triggered";
+        }
+        function right(){
+            document.getElementById("result").innerHTML ="oncontextmenu triggered";
+        }
+        function doubleclick(){
+            document.getElementById("result").innerHTML ="ondblclick triggered";
+        }
+        function keydown(){
+            document.getElementById("result").innerHTML ="onkeydown triggered";
+        }
+        function keyup(){
+            document.getElementById("result").innerHTML ="onkeyup triggered";
+        }
+        function scroll(){
+            document.getElementById("result").innerHTML ="onscroll triggered";
+        }
+        function input(){
+            var x = document.getElementById("myInput").value;
+                document.getElementById("inputResult").innerHTML = "oninput triggered: " + x;
+        }
+        function mousewheel(){
+            document.getElementById("result").innerHTML ="onmousewheel triggered";
+        }
+        function paste(){
+            document.getElementById("result").innerHTML ="onpaste triggered";
+        }
+        function toggle(){
+            document.getElementById("result").innerHTML ="ontoggle triggered";
+        }
+        function blur(){
+                document.getElementById("result").innerHTML = "onblur triggered";
+        }
+    </script>
+</body>
+</html>

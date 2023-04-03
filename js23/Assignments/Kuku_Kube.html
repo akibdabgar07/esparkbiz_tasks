@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <title>game</title>
+</head>
+
+<body>
+    <center>
+        <span id="seconds" style=" font-size: large;"></span>
+    </center>
+    <script>
+        // 30 jan 2023 and 31 jan
+  var yax_second = 50;
+        function upTimer(count) {
+            
+         }
+        setInterval(function () {
+            yax_second = yax_second - 0.01;
+            if (yax_second > 1) {
+                console.log("sec: "+yax_second);
+                document.getElementById('seconds').innerHTML=Math.floor(yax_second);
+            }
+        }, 10);
+
+        let yax_cols = 3;
+        let yax_rows = 3;
+        let yax_count = 0;
+        let yax_Dark_color_array = new Array(10);
+        let yax_Light_color_array = new Array(10);
+        yax_Dark_color_array[0] = '17202A';
+        yax_Light_color_array[0] = '2E4053';
+        yax_Dark_color_array[1] = '515A5A';
+        yax_Light_color_array[1] = '7F8C8D';
+        yax_Dark_color_array[2] = 'D35400';
+        yax_Light_color_array[2] = 'DC7633';
+        yax_Dark_color_array[3] = '2E86C1';
+        yax_Light_color_array[3] = '5DADE2';
+        yax_Dark_color_array[4] = '922B21';
+        yax_Light_color_array[4] = 'CD6155';
+        yax_Dark_color_array[5] = 'FBC02D';
+        yax_Light_color_array[5] = 'FDD835';
+        yax_Dark_color_array[6] = '0097A7';
+        yax_Light_color_array[6] = '00BCD4';
+        yax_Dark_color_array[7] = '3F51B5';
+        yax_Light_color_array[7] = '7986CB';
+        yax_Dark_color_array[8] = 'E91E63';
+        yax_Light_color_array[8] = 'F06292';
+        yax_Dark_color_array[9] = '5D4037';
+        yax_Light_color_array[9] = '795548';
+
+        const yax_Timeout = setTimeout(finalScore, (yax_second*1000));
+        function finalScore() {
+            document.body.innerHTML = "Timeout Your Score: " + yax_count+"<br> <input type='button' onclick='location.reload();' value='Reset Game'/>";
+            // document.write('Timeout Your Score: '+yax_count);
+        }
+        function genTable() {
+            document.write('<center><span id="seconds" style="text-align: center; font-size: large;"></span></center>');
+            let yax_td_color = Math.floor(Math.random() * 10);
+            document.write(
+                "<table border = '1px' width = '60%' height= '40%' id = 'test' style = 'border-style: none; border-radius: 5px; margin-left: auto; margin-right: auto; margin-top: 5%'>"
+                    );
+                    let yax_id_td = 0;
+                    for (let yax_i = 0; yax_i < yax_cols; yax_i++) {
+                        document.write("<tr>");
+                for (let yax_j = 0; yax_j < yax_rows; yax_j++) {
+                    document.write("<td title= " + (yax_i + 1) + "*" + (yax_j + 1) + " id='" + yax_id_td + "'onclick='yax_add(this.id)' style = 'background-color: #" + yax_Dark_color_array[yax_td_color] + "; border-style: none; border-radius: 5px;'></td>");
+                    yax_id_td++;
+                    // document.getElementById(yax_id_td).style.backgroundColor = '#1B4F72';
+                    // console.log(yax_id_td);
+                    console.log(yax_td_color);
+                }
+                document.write("</tr>");
+            }
+            yax_td_number = Math.floor(Math.random() * ((yax_cols * yax_cols)));
+            document.getElementById(yax_td_number).style.backgroundColor = '#' + yax_Light_color_array[yax_td_color];
+            console.log("press: " + yax_td_number);
+            console.log('hi');
+        }
+        document.write("</table>");
+        genTable();
+        function yax_add(yax_id_passer) {
+
+            if (yax_id_passer == yax_td_number) {
+                console.log('hello');
+                document.body.innerHTML = "";
+                if (yax_cols <= 7) {
+                    yax_cols = yax_cols + 1;
+                    yax_rows = yax_rows + 1;
+                    console.log(yax_cols);
+                    genTable();
+                    yax_count++;
+                    // document.write(yax_count);
+                    //var yax_array = new Array((yax_cols * yax_rows));
+                    //console.log(yax_array.length);
+                }
+                else {
+                    //document.getElementById('tableViewer').innerHTML=genTable();
+                    genTable();
+                    yax_count++;
+                    // document.write(yax_count);
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
+
+</html>

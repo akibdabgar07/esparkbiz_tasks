@@ -1,0 +1,23 @@
+^[a-zA-Z] means starting with a to z OR A to Z.
+.{8,} means must contain 8 or more characters. (here . means any character if i put [a-z]{8,} then it means any character from a to z more than 8 times)
+[a-z0-9._%+-] means this field contains a to z and 0 to 9 and . and _ and % and + and -
+@+ means atleast 1 time @ comes
+@* means 0 or more times @ come
+. means any character in the place of dot means 1 dot = 1 any character
+if you want to to get 1 dot from user than use \.
+\. means . character for 1 time
+\.+ means atleast 1 time . comes
+\.* means 0 or more times . come
+\d means anydigit if there are one \d that means only one any-digit
+(?=pattern) means positive lookahead
+    reference:https://www.oreilly.com/library/view/python-natural-language/9781787121423/50399249-d991-4662-aee6-477e4cb3a7d4.xhtml
+    regexper website:https://regexper.com/#%28%3F%3D.*%5Cd%29
+
+[0-9]{2} here [0-9] means any character comes between 0 to 9 and {2} means repeats 2 times.
+$ means end of the line
+
+
+(?=.*[a-z])        // use positive look ahead to see if at least one lower case letter exists
+(?=.*[A-Z])        // use positive look ahead to see if at least one upper case letter exists
+(?=.*\d)           // use positive look ahead to see if at least one digit exists
+(?=.*\W)           // use positive look ahead to see if at least one non-word character exists

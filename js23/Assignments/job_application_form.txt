@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Applicaiton Form</title>
+    <style>
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 2vh;
+            font-size: medium;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td {
+            padding-bottom: 1vh;
+        }
+
+        body {
+            background-color: #f0dbdb62;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let i = 1;
+        let j = 1;
+
+        function addCourse() {
+            document.getElementById('add_course_new').innerHTML += '<br><tr> <td><label for="Course Name' + i + '">Course Name: </label></td> <td> <select name="Course Name' + i + '" id="Course Name' + i + '"> <option value="10th">10th</option> <option value="12th">12th</option> <option value="diploma">diploma</option> <option value="graduate">graduate</option> <option value="Post graduate">Post graduate</option> </select> </td> <td><label for="Passing Year' + i + '">Passing Year: </label></td> <td><input type="text" id="Passing Year' + i + '" placeholder="2023" name="Passing Year' + i + '"></td> </tr> <tr> <td><label for="Percentage' + i + '">Percentage: </label></td> <td><input type="text" id="Percentage' + i + '" placeholder="%" name="Percentage' + i + '"></td> <td><label for="board' + i + '">board: </label></td> <td><input type="text" id="board' + i + '" placeholder="CBSC" name="board' + i + '"></td> </tr>';
+            i++;
+        }
+        function addWork() {
+            document.getElementById('add_work_experience_new').innerHTML += '<br><tr id="new_added_work_experience"' + j + '> <td><label for="Company name' + j + '">Company name: </label></td> <td><input type="text" id="Company name' + j + '" placeholder="abc" name="Company name' + j + '"></td> <td><label for="Designation' + j + '">Designation: </label></td> <td><input type="text" id="Designation' + j + '" placeholder="CTO" name="Designation' + j + '"></td> </tr> <tr> <td><label for="From' + j + '">From: </label></td> <td><input type="date" id="From' + j + '" name="From' + j + '"></td> <td><label for="To' + j + '">To: </label></td> <td><input type="date" id="To' + j + '" name="To' + j + '"></td> </tr>';
+            j++;
+        }
+        // function removeCourse() {
+        //     console.log(i);
+        //     let test = document.getElementsByName('new_added_course' + (i-1));
+        //     test[0].innerHTML = "";
+        // }
+        function resetCourse() {
+            document.getElementById('add_course_new').innerHTML = '<tr id="course_details"> <td><label for="Course Name">Course Name: </label></td> <td> <select name="Course Name" id="Course Name"> <option value="10th">10th</option> <option value="12th">12th</option> <option value="diploma">diploma</option> <option value="graduate">graduate</option> <option value="Post graduate">Post graduate</option> </select> </td> <td><label for="Passing Year">Passing Year: </label></td> <td><input type="text" id="Passing Year" placeholder="2023" name="Passing Year"></td> <td> <input type="button" value="add" id="add_course" name="add_course" onclick="addCourse()" /> <input type="button" value="reset" id="remove_course" name="remove_course" onclick="resetCourse()" /> </td> </tr> <tr> <td><label for="Percentage">Percentage: </label></td> <td><input type="text" id="Percentage" placeholder="%" name="Percentage"></td> <td><label for="board">board: </label></td> <td><input type="text" id="board" placeholder="CBSC" name="board"></td> </tr>';
+            i = 1;
+        }
+
+        function resetWork() {
+            document.getElementById('add_work_experience_new').innerHTML = '<tr> <td><label for="Company name">Company name: </label></td> <td><input type="text" id="Company name" placeholder="abc" name="Company name"></td> <td><label for="Designation">Designation: </label></td> <td><input type="text" id="Designation" placeholder="CTO" name="Designation"></td> <td> <input type="button" value="add" onclick="addWork()" /> <input type="button" value="reset" onclick="resetWork()" /> </td> </tr> <tr> <td><label for="From">From: </label></td> <td><input type="date" id="From" name="From"></td> <td><label for="To">To: </label></td> <td><input type="date" id="To" name="To"></td> </tr>';
+            j = 1;
+        }
+        function technologies(techid) {
+            let techid1 = document.getElementById(techid + '_level');
+            let techid2 = document.getElementById(techid);
+            let radio_unchk = document.getElementsByName(techid + 'r');
+            // console.log(techid2.checked);
+            if (techid2.checked) {
+                techid1.style.display = 'inline-block';
+            }
+            else {
+                techid1.style.display = 'none';
+                radio_unchk[0].checked = false;
+                radio_unchk[1].checked = false;
+                radio_unchk[2].checked = false;
+            }
+        }
+
+        function languages(lanid) {
+            let lanid1 = document.getElementById(lanid);
+            let lanid_level = document.getElementById(lanid + '_level');
+            let lanidr = document.getElementById(lanid + 'r');
+            let lanidw = document.getElementById(lanid + 'w');
+            let lanids = document.getElementById(lanid + 's');
+            // console.log(lanid1.checked);
+
+            if (lanid1.checked) {
+                lanid_level.style.display = 'inline-block';
+            }
+            else {
+                lanid_level.style.display = 'none';
+                //lanid1.style.display = 'none';
+                lanidr.checked = false;
+                lanidw.checked = false;
+                lanids.checked = false;
+            }
+        }
+
+        function validation() {
+            let fname = document.getElementById("fname");
+            let lname = document.getElementById("lname");
+            let email = document.getElementById("Email");
+            let radiobtns = document.getElementsByName("gender");
+            let checkboxs = document.getElementsByName("chkbox");
+            let selectopt = document.getElementById('hobbies');
+            const nameregex = /[a-zA-Z0-9]+/;
+            const emailRegex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9.-]{2,}/;
+            const passRegex =
+                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+            // above password regular expression copied from stackoverflow.
+            /*
+            
+                    if (uname != unameRegex2 && uname !="" && !unameRegex.test(uname) && !unameRegex1.test(uname)) {
+                      console.log("correct user");  
+                      if (passRegex.test(pass)) {
+                        console.log("correct pass");
+                        if (radiobtns[0].checked || radiobtns[1].checked) {
+                          console.log('radiobtn OK');
+                          if (checkboxs[0].checked || checkboxs[1].checked) {
+                            console.log('checkboxes OK');
+                            return true;
+                          }
+                        }
+                      }
+                    }
+            
+             */
+            if (!nameregex.test(fname.value)) {
+                fname.focus();
+                return false;
+            }
+            if (!nameregex.test(lname.value)) {
+                lname.focus();
+                return false;
+            }
+            if (!emailRegex.test(email.value)) {
+                console.log("incorrect user");
+                email.focus();
+                return false;
+            }
+            if (!passRegex.test(pass.value)) {
+                console.log("incorrect pass");
+                document.getElementById('passwarning').innerHTML = 'password format is invalid.';
+                pass.focus();
+                return false;
+            }
+            else {
+                document.getElementById('passwarning').innerHTML = '';
+            }
+            if (!radiobtns[0].checked && !radiobtns[1].checked) {
+                console.log('radiobtn FAil');
+                document.getElementById('radiowarning').innerHTML = 'select one radio button';
+                return false;
+            }
+            else {
+                document.getElementById('radiowarning').innerHTML = '';
+            }
+            if (!checkboxs[0].checked && !checkboxs[1].checked) {
+                console.log('checkboxes Fail');
+                document.getElementById('checkboxwarning').innerHTML = 'Select atleast one checkebox';
+                return false;
+            }
+            else {
+                document.getElementById('checkboxwarning').innerHTML = '';
+                return true;
+            }
+
+            //console.log(unameRegex.test(uname));
+            //console.log(!unameRegex1.test(uname));
+        }
+
+        function unchk() {
+            let radiobtn = document.getElementsByName('gender');
+            if (radiobtn[0].checked) {
+                radiobtn[0].checked = false;
+            }
+            else if (radiobtn[1].checked) {
+                radiobtn[1].checked = false;
+            }
+        }        
+    </script>
+    <p style="text-align: center;">Basic Details</p>
+    <form method="POST" action="job_application_form.html" onsubmit="return validation();">
+        <hr>
+        <table class="table">
+            <tr>
+                <td><label for="fname">First Name: </label></td>
+                <td><input type="text" id="fname" name="fname"></td>
+            </tr>
+            <tr>
+                <td><label for="lname">Last Name: </label></td>
+                <td><input type="text" id="lname" name="lname"></td>
+            </tr>
+            <tr>
+                <td><label for="Designation">Designation: </label></td>
+                <td><input type="text" id="Designation" name="Designation"></td>
+            </tr>
+            <tr>
+                <td><label for="Email">Email: </label></td>
+                <td><input type="text" id="Email" name="Email"></td>
+            </tr>
+            <tr>
+                <td><label for="PhoneNumber">Phone No: </label></td>
+                <td><input type="text" id="PhoneNumber" name="PhoneNumber"></td>
+            </tr>
+            <tr>
+                <td><label for="Gender">Gender: </label></td>
+                <td><input type="radio" name="Gender" id="male" value="male"><label for="male">Male</label>
+                    <input type="radio" name="Gender" id="female" value="female"><label for="female">Female</label>
+                    <input type="radio" name="Gender" id="other" value="other"><label for="other">Other</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Relation">Relation Status: </label></td>
+                <td>
+                    <select name="Relation" id="Relation">
+                        <option>Single</option>
+                        <option>Married</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Address 1">Address 1: </label></td>
+                <td><textarea cols="22" rows="4" id="Address 1" name="Address 1"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="Address 2">Address 2: </label></td>
+                <td><textarea cols="22" rows="4" id="Address 2" name="Address 2"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="City">City: </label></td>
+                <td><input type="text" id="City" name="City"></td>
+            </tr>
+            <tr>
+                <td><label for="State">State: </label></td>
+                <td>
+                    <select name="State" id="State">
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Goa">Goa</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Zip code">Zip code: </label></td>
+                <td><input type="text" id="Zip code" name="Zip code"></td>
+            </tr>
+            <tr>
+                <td><label for="Date Of Birth">Date Of Birth: </label></td>
+                <td><input type="date" id="Date Of Birth" name="Date Of Birth"></td>
+            </tr>
+        </table>
+        <p style="text-align: center;">Education Details</p>
+        <hr>
+        <table class="table" style="width: 80%;" id="add_course_new" name="add_course_new">
+            <tr id="course_details">
+                <td><label for="Course Name">Course Name: </label></td>
+                <td>
+                    <select name="Course Name" id="Course Name">
+                        <option value="10th">10th</option>
+                        <option value="12th">12th</option>
+                        <option value="diploma">diploma</option>
+                        <option value="graduate">graduate</option>
+                        <option value="Post graduate">Post graduate</option>
+                    </select>
+                </td>
+                <td><label for="Passing Year">Passing Year: </label></td>
+                <td><input type="text" id="Passing Year" placeholder="2023" name="Passing Year"></td>
+                <td>
+                    <input type="button" value="add" id="add_course" name="add_course" onclick="addCourse()" />
+                    <input type="button" value="reset" id="remove_course" name="remove_course"
+                        onclick="resetCourse()" />
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Percentage">Percentage: </label></td>
+                <td><input type="text" id="Percentage" placeholder="%" name="Percentage"></td>
+                <td><label for="board">board: </label></td>
+                <td><input type="text" id="board" placeholder="CBSC" name="board"></td>
+            </tr>
+        </table>
+        <p style="text-align: center;">Work Experience</p>
+        <hr>
+        <table class="table" style=" width: 80%;" id="add_work_experience_new" name="add_work_experience_new">
+            <tr>
+                <td><label for="Company name">Company name: </label></td>
+                <td><input type="text" id="Company name" placeholder="abc" name="Company name"></td>
+                <td><label for="Designation">Designation: </label></td>
+                <td><input type="text" id="Designation" placeholder="CTO" name="Designation"></td>
+                <td>
+                    <input type="button" value="add" onclick="addWork()" />
+                    <input type="button" value="reset" onclick="resetWork()" />
+                </td>
+            </tr>
+            <tr>
+                <td><label for="From">From: </label></td>
+                <td><input type="date" id="From" name="From"></td>
+                <td><label for="To">To: </label></td>
+                <td><input type="date" id="To" name="To"></td>
+            </tr>
+
+        </table>
+        <p style="text-align: center;">Language Known</p>
+        <hr>
+        <table class="table">
+            <tr>
+                <td><input type="checkbox" id="Hindi" name="Hindi" onclick="languages(this.id)"><label
+                        for="Hindi">Hindi</label></td>
+                <td style="display: none;" id="Hindi_level">
+                    <input type="checkbox" id="Hindir" name="Hindir"><label for="Hindir">Read</label>
+                    <input type="checkbox" id="Hindiw" name="Hindiw"><label for="Hindiw">Write</label>
+                    <input type="checkbox" id="Hindis" name="Hindis"><label for="Hindis">Speak</label>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="English" name="English" onclick="languages(this.id)"><label
+                        for="English">English</label></td>
+                <td style="display: none;" id="English_level">
+                    <input type="checkbox" id="Englishr" name="Englishr"><label for="Englishr">Read</label>
+                    <input type="checkbox" id="Englishw" name="Englishw"><label for="Englishw">Write</label>
+                    <input type="checkbox" id="Englishs" name="Englishs"><label for="Englishs">Speak</label>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="Gujarati" name="Gujarati" onclick="languages(this.id)"><label
+                        for="Gujarati">Gujarati</label></td>
+                <td style="display: none;" id="Gujarati_level">
+                    <input type="checkbox" id="Gujaratir" name="Gujaratir"><label for="Gujaratir">Read</label>
+                    <input type="checkbox" id="Gujaratiw" name="Gujaratiw"><label for="Gujaratiw">Write</label>
+                    <input type="checkbox" id="Gujaratis" name="Gujaratis"><label for="Gujaratis">Speak</label>
+                </td>
+            </tr>
+        </table>
+        <p style="text-align: center;">Technologies You Known</p>
+        <hr>
+        <table class="table">
+            <tr>
+                <td><input type="checkbox" id="php" name="php" onclick="technologies(this.id)"><label
+                        for="php">PHP</label></td>
+                <td style="display: none;" id="php_level" name="php_level">
+                    <input type="radio" id="phpb" name="phpr"><label for="phpb">Beginer</label>
+                    <input type="radio" id="phpm" name="phpr"><label for="phpm">Mediator</label>
+                    <input type="radio" id="phpe" name="phpr"><label for="phpe">Expert</label>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="mysql" name="mysql" onclick="technologies(this.id)"><label
+                        for="mysql">Mysql</label></td>
+                <td style="display: none;" id="mysql_level" name='mysql_level'>
+                    <input type="radio" id="mysqlb" name="mysqlr"><label for="mysqlb">Beginer</label>
+                    <input type="radio" id="mysqlm" name="mysqlr"><label for="mysqlm">Mediator</label>
+                    <input type="radio" id="mysqle" name="mysqlr"><label for="mysqle">Expert</label>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="laravel" name="laravel" onclick="technologies(this.id)"><label
+                        for="laravel">laravel</label></td>
+                <td style="display: none;" id="laravel_level" name="laravel_level">
+                    <input type="radio" id="laravelb" name="laravelr"><label for="laravelb">Beginer</label>
+                    <input type="radio" id="laravelm" name="laravelr"><label for="laravelm">Mediator</label>
+                    <input type="radio" id="laravele" name="laravelr"><label for="laravele">Expert</label>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="oracle" name="oracle" onclick="technologies(this.id)"><label
+                        for="oracle">Oracle</label></td>
+                <td style="display: none;" id="oracle_level" name="oracle_level">
+                    <input type="radio" id="oracleb" name="oracler"><label for="oracleb">Beginer</label>
+                    <input type="radio" id="oraclem" name="oracler"><label for="oraclem">Mediator</label>
+                    <input type="radio" id="oraclee" name="oracler"><label for="oraclee">Expert</label>
+                </td>
+            </tr>
+        </table>
+        <p style="text-align: center;">Reference Contact</p>
+        <hr>
+        <table class="table" style="width: 60%;">
+            <tr>
+                <td><label for="Relation name1">Name: </label></td>
+                <td><input type="text" id="Relation name1" placeholder="First + last name" name="Relation name1"></td>
+                <td><label for="Relation Number1">Contact No: </label></td>
+                <td><input type="text" id="Relation Number1" placeholder="9999999999" name="Relation Number1"></td>
+                <td><label for="Relation1">Relation: </label></td>
+                <td><input type="text" id="Relation1" name="Relation1" placeholder="father"></td>
+            </tr>
+            <tr>
+                <td><label for="Relation name2">Name: </label></td>
+                <td><input type="text" id="Relation name2" placeholder="First + last name" name="Relation name2"></td>
+                <td><label for="Relation Number2">Contact No: </label></td>
+                <td><input type="text" id="Relation Number2" placeholder="9999999999" name="Relation Number2"></td>
+                <td><label for="Relation2">Relation: </label></td>
+                <td><input type="text" id="Relation2" name="Relation2" placeholder="mother"></td>
+            </tr>
+        </table>
+        <p style="text-align: center;">Preferences</p>
+        <hr>
+        <table class="table" style="width: 60%;">
+            <tr>
+                <td rowspan="3"><label for="Relation name1">preferred location: </label></td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="preferred location" id="preferred location" multiple>
+                        <option>ahmedabad</option>
+                        <option>surat</option>
+                        <option>mehsana</option>
+                    </select>
+                </td>
+                <td>
+                    <label for="Notice period">Notice period:</label>
+                    <br>
+                    <label for="Expected CTC">Expected CTC:</label>
+                    <br>
+                    <label for="Current CTC">Current CTC:</label>
+                    <br>
+                </td>
+                <td>
+                    <input type="text" id="Notice period" name="Notice period"><br>
+                    <input type="text" id="Expected CTC" name="Expected CTC"><br>
+                    <input type="text" id="Current CTC" name="Current CTC"><br>
+                </td>
+                <td>
+                    <label for="Department">Department:</label>
+                    <select name="Department" id="Department">
+                        <option>Development</option>
+                        <option>Marketing</option>
+                        <option>Design</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: center;">
+            <input type="submit" value="submit" id="submitbtn" />
+        </div>
+    </form>
+</body>
+
+</html>

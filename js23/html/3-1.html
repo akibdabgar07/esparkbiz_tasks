@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing onMouseOver event</title>
+</head>
+<body>
+    <form>
+		<input type="text" size="1" id= "cols" pattern="[1-100]"/>*<input type="text" size="1" id= "rows" pattern="[1-100]"/>
+		<input type="button" onclick="genTable()" value="Generate"/>
+	</form>
+	<script>
+        let i = 0,j=0;
+		function genTable(){
+			let cols = document.getElementById("cols").value;
+			let rows = document.getElementById("rows").value;
+			document.write("<table border = '1px' width = '100%' height= '40%' style='background-color: white;'>");
+			for (i = 0; i < cols; i++){
+				document.write("<tr>");
+				for (j = 0; j < rows; j++){
+					document.write("<td onmouseover='bgcolor()' name='tableData' id = 'hello"+(i+j)+" style='background-color: white;''> </td>");
+				}
+				document.write("</tr>");
+			}
+		}
+        function bgcolor() {
+            document.getElementById('testing').innerHTML = "Red";
+            //document.getElementById('hello'+(i+j)).innerHTML="Hello";
+            console.log('bg');
+            }
+		document.write("</table>");
+	</script>
+</body>
+</html>

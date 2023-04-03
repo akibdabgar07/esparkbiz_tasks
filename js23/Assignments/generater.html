@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+       function datagen() {
+        let no = Math.floor(10000 + Math.random() * 90000);
+        let collegeId = Math.floor(Math.random() * 50);
+        const words = []
+        fetch("https://random-data-api.com/api/v2/users?size=2&is_xml=true")
+            .then(response => response.json())
+            .then(function (result) {
+                console.log('Result', result)
+                console.log(result[0]["first_name"])
+                document.write("INSERT INTO studentdb.studentMaster (fname, lname, contactNo, email, collegeId, sCity) VALUES ('"+(result[0]["first_name"]).replace("'", "-")+"', '"+(result[0]["last_name"]).replace("'", "-")+"', '9"+no+"', '"+(result[1]["email"].replace("'", "-"))+"', '"+collegeId+"', '"+(result[1]["address"]["city"]).replace("'", "-")+"');<br>");
+                // document.getElementById('query').innerHTML = "INSERT INTO `studentdb`.`studentMaster` (`fname`, `lname`, `contactNo`, `email`, `collegeId`, `sCity`) VALUES ('"+result[0]["first_name"]+"', '"+result[0]["last_name"]+"', '9"+no+"', '"+result[1]["email"]+"', '"+collegeId+"', '"+result[1]["address"]["city"]+"');";
+            })
+            .catch(error => console.log('error', error));
+       }
+       for (let index = 0; index < 1350; index++) {
+        datagen();
+       }
+    </script>
+</body>
+
+</html>

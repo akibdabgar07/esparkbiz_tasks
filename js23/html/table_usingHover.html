@@ -1,0 +1,48 @@
+<html>
+<head>
+    /*NOT Working*/
+	<title>Tables_using JavaScript</title>
+    <style>
+        .tooltip{
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: white;
+            color: black;
+            text-align: center;
+            position: absolute;
+            z-index: 1;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+	<form>
+		<input type="text" size="1" id= "cols"/>*<input type="text" size="1" id= "rows"/>
+		<button type="button" onclick="genTable()">Generate</button>
+	</form>
+	<script>
+		function genTable(){
+			let cols = document.getElementById("cols").value;
+			let rows = document.getElementById("rows").value;
+			document.write("<table border = '1px' width = '100%' height= '40%'>");
+			for (let i = 0; i < cols; i++){
+				document.write("<tr>");
+				for (let j = 0; j < rows; j++){
+					document.write("<td><div id='node-id'></div></td>");
+                    try1 = document.getElementById("node-id");
+                    try1.innerHTML('<div class="tooltip">Hover over me <span class="tooltiptext">Tooltip text</span> </div>');
+				}
+				document.write("</tr><br>");
+                
+			}
+		}
+		document.write("</table>");
+	</script>
+</body>
+</html>

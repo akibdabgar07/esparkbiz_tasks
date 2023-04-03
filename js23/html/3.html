@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>addEventListener</title>
+</head>
+<body>
+    <input type="text" id="int"/>
+    <input type="button" id="btn" value="click"/>
+    <p id="result"></p>
+    <p id="result1"></p>
+    <script>
+        document.getElementById("btn").addEventListener("click", click_demo);
+        document.getElementById("btn").addEventListener("mouseover", mouseover);
+        document.getElementById("btn").addEventListener("mouseout", mouseout);
+        document.getElementById("btn").addEventListener("contextmenu", right);
+        document.getElementById("btn").addEventListener("dblclick", dblclick);
+        document.getElementById("int").addEventListener("keydown", keydown);
+        document.getElementById("btn").addEventListener("contextmenu", right);
+        document.getElementById("int").addEventListener("scroll", scroll);
+        document.getElementById("int").addEventListener("input", input);
+        document.getElementById("int").addEventListener("keyup", keyup);
+        document.getElementById("int").addEventListener("mousewheel", mousewheel);
+        document.getElementById("int").addEventListener("paste", paste);
+        document.getElementById("int").addEventListener("blur", blur);
+
+        function click_demo() {
+          document.getElementById("result").innerHTML = 'click triggered';
+        }
+        function mouseover() {
+          document.getElementById("result").innerHTML = 'mouseover triggered';
+        }
+        function mouseout() {
+          document.getElementById("result").innerHTML = 'mouseout triggered';
+        }
+        function right() {
+          document.getElementById("result").innerHTML = 'contextmenu triggered';
+        }
+        function dblclick() {
+          document.getElementById("result").innerHTML = 'dblclick triggered';
+        }
+        function keydown() {
+          document.getElementById("result").innerHTML = 'keydown triggered';
+        }
+        function scroll() {
+          document.getElementById("result").innerHTML = 'scroll triggered';
+        }
+        function input() {
+          document.getElementById("result1").innerHTML = 'input triggered';
+        }
+        function keyup() {
+          document.getElementById("result").innerHTML = 'keyup triggered';
+        }
+        function mousewheel() {
+          document.getElementById("result").innerHTML = 'mousewheel triggered';
+        }
+        function paste() {
+          document.getElementById("result").innerHTML = 'paste   triggered';
+        }
+        function blur() {
+          document.getElementById("result").innerHTML = 'blur triggered';
+        }
+    </script>
+</body>
+</html>

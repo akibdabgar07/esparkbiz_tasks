@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo form</title>
+  <style>
+    td {
+      padding: 2%;
+    }
+  </style>
+</head>
+
+<body>
+  <table style="margin-left: auto; margin-right: auto">
+    <form method="POST" action="table_Using Scroll.html" onsubmit="return chk();">
+      <tr>
+        <td>
+          <label for="username">Username</label>
+        </td>
+        <td>
+          <input type="text" id="username" /><br>
+          <small id="unamewarning"></small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="email">Email</label>
+        </td>
+        <td>
+          <input type="text" id="email" /><br>
+          <small id="emailwarning"></small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="pass">Password</label>
+        </td>
+        <td>
+          <input type="password" id="pass" /><br>
+          <small id="passwarning"></small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="radio" id="mradio" name="gender" value="male" /><label for="mradio"
+            ondblclick="unchk()">Male</label>
+        </td>
+        <td>
+          <input type="radio" id="fradio" name="gender" value="female" /><label for="fradio"
+            ondblclick="unchk()">Female</label>
+          <br>
+          <small id="radiowarning"></small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="hobbies">Hobbies:</label>
+        </td>
+        <td>
+          <select id="hobbies" required>
+            <option>Reading</option>
+            <option>Travalling</option>
+            <option>Gaming</option>
+            <option>Drawing</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox" id="c-lan" value="c" name="chkbox" /><label for="c-lan">c</label>
+        </td>
+        <td>
+          <input type="checkbox" id="c++-lan" value="c++" name="chkbox" /><label for="c++-lan">c++</label>
+          <br>
+          <small id="checkboxwarning"></small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="submit" id="submitbtn" />
+        </td>
+        <td>
+          <input type="reset" value="Reset" id="Resetbtn" />
+        </td>
+      </tr>
+    </form>
+  </table>
+  <div>
+    <small>1. Use Double click to Unchecked the radio button</small><br>
+    <small>2. usename not start with numbers and not contains any spedcial character.</small><br>
+    <small>3. password must contains atleast 1 non-Capital word, 1 capital word, 1 Special character, 1 numerical
+      character and length is greater or Equalto 8 (password.length >= 8).</small><br>
+    <small>4. email must contains @ and . before and After @ email must contanis atleast one character, after . email
+      must contain atleast 2 character and email can include this Special characters . _ -</small><br>
+    <small>5. select atleast 1 checkbox and select 1 radio button</small>
+  </div>
+
+  <script>
+    function chk() {
+      let uname = document.getElementById("username");
+      let email = document.getElementById("email");
+      let pass = document.getElementById("pass");
+      let radiobtns = document.getElementsByName("gender");
+      let checkboxs = document.getElementsByName("chkbox");
+      let selectopt = document.getElementById('hobbies');
+
+      const unameRegex = /^[0-9]/;
+      const unameRegex1 = /.*\W.*/;
+      const unameRegex2 = / +/;
+      const emailRegex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9.-]{2,}/;
+      const passRegex =
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+      // above password regular expression copied from stackoverflow.
+      /*
+      
+              if (uname != unameRegex2 && uname !="" && !unameRegex.test(uname) && !unameRegex1.test(uname)) {
+                console.log("correct user");  
+                if (passRegex.test(pass)) {
+                  console.log("correct pass");
+                  if (radiobtns[0].checked || radiobtns[1].checked) {
+                    console.log('radiobtn OK');
+                    if (checkboxs[0].checked || checkboxs[1].checked) {
+                      console.log('checkboxes OK');
+                      return true;
+                    }
+                  }
+                }
+              }
+      
+       */
+      if (uname.value == unameRegex2 || uname.value == "" || unameRegex.test(uname.value) || unameRegex1.test(uname.value)) {
+        console.log("incorrect user");
+        document.getElementById('unamewarning').innerHTML = 'username format is invalid.';
+        uname.focus();
+        return false;
+      }
+      else {
+        document.getElementById('unamewarning').innerHTML = '';
+      }
+      if (!emailRegex.test(email.value)) {
+        console.log("incorrect user");
+        document.getElementById('emailwarning').innerHTML = 'email format is invalid.';
+        email.focus();
+        return false;
+      }
+      else {
+        document.getElementById('emailwarning').innerHTML = '';
+      }
+      if (!passRegex.test(pass.value)) {
+        console.log("incorrect pass");
+        document.getElementById('passwarning').innerHTML = 'password format is invalid.';
+        pass.focus();
+        return false;
+      }
+      else {
+        document.getElementById('passwarning').innerHTML = '';
+      }
+      if (!radiobtns[0].checked && !radiobtns[1].checked) {
+        console.log('radiobtn FAil');
+        document.getElementById('radiowarning').innerHTML = 'select one radio button';
+        return false;
+      }
+      else {
+        document.getElementById('radiowarning').innerHTML = '';
+      }
+      if (!checkboxs[0].checked && !checkboxs[1].checked) {
+        console.log('checkboxes Fail');
+        document.getElementById('checkboxwarning').innerHTML = 'Select atleast one checkebox';
+        return false;
+      }
+      else {
+        document.getElementById('checkboxwarning').innerHTML = '';
+        return true;
+      }
+
+      //console.log(unameRegex.test(uname));
+      //console.log(!unameRegex1.test(uname));
+    }
+
+    function unchk() {
+      let radiobtn = document.getElementsByName('gender');
+      if (radiobtn[0].checked) {
+        radiobtn[0].checked = false;
+      }
+      else if (radiobtn[1].checked) {
+        radiobtn[1].checked = false;
+      }
+    }
+  </script>
+</body>
+
+</html>
