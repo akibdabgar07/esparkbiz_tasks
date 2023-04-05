@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    td,
+    th {
+        border: 1px solid black;
+        padding: 20px;
+    }
+    
+    table {
+        border: 1px solid black;
+        background-color: aquamarine;
+    }
+    
+    #anchor {
+        border: 1px solid black;
+        padding: 2px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    #a {
+        display: flex;
+        justify-content: center;
+    }
+    
+    #b {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<body>
+
+
+    <div id="a">
+        <% for(let x = 1;x<=count_1;x++) {%>
+            <a id="anchor" href="view?no=<%=x%>" <%if(x==page){%> style = "background-color:red;color:white;"<%}  else {%> style = "background-color:white" <%}%>>
+                <%=x%>
+            </a>
+            <%  } %>
+
+    </div>
+    <div id="b">
+
+        <table>
+            <tr>
+                <th onclick='window.location.href = `view?no=1&&sort=id`'>id</th>
+                <th onclick='window.location.href = `view?no=1&&sort=first_name`'>first_name</th>
+                <th onclick='window.location.href = `view?no=1&&sort=last_name`'>last_name</th>
+                <th onclick='window.location.href = `view?no=1&&sort=contact`'>contact</th>
+                <th onclick='window.location.href = `view?no=1&&sort=city`'>city</th>
+            </tr>
+
+            <% for (const x of t1)  {%>
+                <tr>
+                    <td>
+                        <%=x.id%>
+                    </td>
+                    <td>
+                        <%=x.first_name%>
+                    </td>
+                    <td>
+                        <%=x.last_name%>
+                    </td>
+                    <td>
+                        <%=x.contact%>
+                    </td>
+                    <td>
+                        <%=x.city%>
+                    </td>
+
+                </tr>
+                <%} %>
+
+
+
+        </table>
+
+    </div>
+
+
+    <script>
+    </script>
+
+
+</body>
+
+</html>
